@@ -9,6 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
+<style id="gl-design-system-variables">
+:root { --paper: #f6f7f5; --ink: #1b2430; --blueprint: #2b5bb8; --blueprint-dark: #1e4390; --marker: #b07a18; --grid: #d8dcd6; --muted: #5c6672; --card: #ffffff; --measure: 66ch; }
+</style>
+<style id="gl-editor-styles">
+.gl-2 {
+  text-transform: none; font-weight: 300;
+}
+</style>
 </head>
 <body>
 
@@ -30,12 +38,6 @@
       <h1>Designing quarterly progress reports that actually align to licensure standards</h1>
       <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~8 min read</p>
 
-      <div class="draft-note">
-        DRAFT. Before publishing: (1) review against your employer's outside-activity
-        and IP policy, (2) confirm nothing here is program-internal or grant-restricted,
-        (3) replace bracketed placeholders, (4) delete this box.
-      </div>
-
       <p>
         Every teacher apprenticeship program has a quarterly progress report. Almost
         none of them can answer the only question the report exists to answer: is this
@@ -44,7 +46,7 @@
       </p>
 
       <p>
-        Ours couldn't either, at first. This is the story of how we rebuilt it, told
+        Ours couldn't either, at first. This is the story of how I rebuilt it, told
         so that you can skip the mistakes.
       </p>
 
@@ -54,7 +56,7 @@
         Our program prepares special education teachers in two Minnesota licensure
         tracks: Academic and Behavioral Strategist (ABS), which is K-12, and Early
         Childhood Special Education (ECSE), which runs birth to age six. These are
-        genuinely different jobs. An ECSE teacher writes IFSPs, coaches families in
+        significantly different jobs. An ECSE teacher writes IFSPs, coaches families in
         natural environments, and works under Part C requirements for infants and
         toddlers. An ABS teacher runs FBAs and BIPs, designs academic interventions,
         and manages K-12 IEP and eligibility processes.
@@ -71,7 +73,8 @@
 
       <blockquote>
         A progress report that doesn't map to the licensure standards isn't measuring
-        progress. It's measuring compliance with the act of filling out a form.
+        progress. It's checking a box, assuming compliance with the act of 
+        filling out a form.
       </blockquote>
 
       <h2>The redesign, in four moves</h2>
@@ -79,21 +82,23 @@
       <h2>1. Split the form</h2>
       <p>
         The first decision was the hardest to accept: one form for two programs was
-        the original sin, and no amount of clever section design would fix it. We
+        the original problem, and no amount of clever section design would fix it. We
         built two separate instruments, visually distinct at a glance so nobody ever
-        grabs the wrong one. Color is a system, not decoration.
+        grabs the wrong one. Colors are used to create clarity, implementing core ideas
+        of <a href="https://uxplanet.org/successful-ux-design-is-intentional-design-73398a91ced">intentional design</a> in a space often constrained by academic and insitutional
+        bindings.
       </p>
 
       <h2>2. Map every item to a real standard</h2>
       <p>
         Every content item on each form now traces to something a licensing body or
-        the program itself actually requires: Minnesota's PELSB standards for each
-        license, the program's core skills, and High Leverage Practices. If an item
+        the program itself actually requires: Minnesota's <a href="https://mn.gov/pelsb/assets/Standards%20of%20Effective%20Practice%20-%2006.2023%20-%20Accessible_tcm1113-579957.pdf">PELSB standards</a> for each
+        license, the program's core skills, and <a href="https://highleveragepractices.org/">High Leverage Practices</a>. If an item
         couldn't be traced, it got cut. This sounds obvious. It required going
         line by line through the standards for both licenses and being willing to
         delete sections people were used to.
       </p>
-      <p>
+      <p class="gl-2">
         One rule from that process worth stealing: use only the frameworks your
         program has actually adopted. Our first redesign draft included a
         well-regarded national framework that we don't use, because it seemed like it
@@ -113,20 +118,23 @@
       <h2>4. Design for the mentor's thirty seconds</h2>
       <p>
         The person completing this form is a mentor teacher with a full caseload.
-        Every design decision optimized for their time: dropdown selections instead of
+        Every design decision was optimized for their time: dropdown selections instead of
         free text wherever a rating is structured, visual grouping that matches how an
         observation actually flows, and nothing that requires them to go look
         something up. We built the documents programmatically, which meant we could
         also do things standard templates can't, like styling dropdowns so they're
         impossible to miss. The tooling details matter less than the principle: if
         the busiest person in the loop can't complete the instrument accurately in
-        one sitting, the instrument is wrong, not the person.
+        one sitting, the instrument is wrong.
       </p>
 
       <h2>What changed</h2>
       <p>
-        [Placeholder: one honest paragraph on outcomes. Completion rates, mentor
-        feedback, what the data newly lets you see, what still isn't solved.]
+        We now have actual data on progress. Where we previously struggled to identify 
+        candidate readiness, we now have strong, specific evidence to support placement
+        and intervention decisions. The results speak for themselves: candidates are on
+        track for their year-long student teaching; mentors report high satisfaction in 
+        the data-reporting process; the program is progressing smoothly. 
       </p>
 
       <h2>What I'd tell another program</h2>
