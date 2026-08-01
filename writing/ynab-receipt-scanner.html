@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teaching an app to read a receipt: a post-mortem &middot; Duccio Mondanelli</title>
+  <meta name="description" content="A post-mortem on a self-hosted PWA that turns a photographed receipt into a split YNAB transaction using AI vision, and what it has in common with building trustworthy program data at NXT GEN Teach.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="/">Duccio Mondanelli<span>.</span></a>
+    <nav class="site" aria-label="Site">
+      <a href="/">About</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/projects/">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <span class="label">Post-mortem &middot; Lab project</span>
+      <h1>Teaching an app to read a receipt</h1>
+      <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~5 min read</p>
+
+      <p>
+        I use YNAB for my budget<sup><a href="#fn1" id="fnref1">1</a></sup>, 
+        and I hate typing out a Costco run line by line
+        almost as much as I love the app itself. A single receipt might be
+        groceries, a household item, and something for the dog, and to keep my budget sane,
+        I want that split across three categories, not dumped into one. So I built a
+        small self-hosted tool that photographs the receipt, has an AI vision
+        model read and categorize every line, and creates the split transaction
+        for me. This is the post-mortem on that build, and on why the hardest
+        part turned out to be the same problem I solve at work.
+      </p>
+
+      <h2>The problem: a generic receipt reader isn't enough</h2>
+
+      <p>
+        The easy version of this tool reads a receipt and guesses at categories:
+        "Costco" becomes "Groceries," done. That's fine until it isn't. My
+        actual budget doesn't use YNAB's default categories, it uses the ones
+        I've spent years customizing, split and renamed to match how I actually
+        think about money. A generic reader that maps to generic categories is
+        exactly as useless as a generic form applied to two different licensure
+        tracks: it produces an answer, just not the one that's useful for my
+        specific setup.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>A tool that outputs a plausible answer instead of the specifically correct one just moves the cleanup work later, it doesn't remove it.</p>
+      </div>
+
+      <h2>The build</h2>
+
+      <h2>1. Capture cheaply, on the device that's already in my hand</h2>
+      <p>
+        The whole thing is a self-hosted PWA: point a phone camera at a receipt
+        or pick one from the gallery, and the image gets compressed client-side
+        before it ever leaves the phone. No app store, no native build, just
+        something I can add to my home screen and use standing in a parking lot.
+        Often, you don't need to reinvent the wheel of overcomplicate things.
+      </p>
+
+      <h2>2. Give the AI my actual categories, not a generic list</h2>
+      <p>
+        Before the image is sent anywhere, the app pre-fetches my real YNAB
+        category list in the background. That list goes to the model alongside
+        the photo, so it isn't guessing at a plausible category name, it's
+        matching line items against categories that actually exist in my
+        budget. Claude or Gemini reads the receipt, groups items, and returns
+        splits using my exact category names. That's the same move as the
+        <a class="inline" href="/writing/hardcover-ai-librarian.html">Hardcover recommender</a>: 
+        don't ask the model to reason in the abstract,
+        give it the real, specific structure it needs to be right for one
+        particular person's setup.
+      </p>
+
+      <h2>3. Nothing becomes a transaction until I say so</h2>
+      <p>
+        The AI's output lands on a confirmation screen, not directly in my
+        budget. I review the parsed splits, fix anything wrong, and only then
+        does it create a standard YNAB transaction, or subtransactions if the
+        receipt spans categories. The model does the tedious first pass. It
+        does not get to touch my actual financial record unsupervised.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>AI output becomes a record only after a human who knows the data confirms it. Convenience is the AI's job, trust is still mine.</p>
+      </div>
+
+      <h2>Where this connects to NXT GEN</h2>
+
+      <p>
+        I built this on my way home from Costco (using voice to text, I am a safe driver!)
+        to stop hating grocery runs, but it landed on the exact
+        principle behind the data infrastructure work I did
+        <a class="inline" href="/writing/dashboard-restructure.html">rebuilding our
+        program's dashboards</a>. There, two years of spreadsheets had drifted
+        apart because summaries were being generated by hand from data that no
+        longer matched. Here, a receipt reader that guessed at generic
+        categories would have quietly drifted from my real budget the same
+        way. Both problems have the same fix: give the AI the real, current,
+        specific source of truth to work from, whether that's my actual YNAB
+        categories or a program's actual licensure standards, instead of
+        letting it reason from something generic and close enough.
+      </p>
+
+      <p>
+        The confirmation screen matters for the same reason our dashboard
+        rebuild's verification rule matters. Our director's standing rule is
+        that no number leaves the team until a person who knows the candidates
+        has signed off on it. This app follows the identical shape at a much
+        smaller scale: no line item becomes a real transaction until I've
+        looked at it. In both cases the AI earns trust by being checked, not
+        by sounding confident.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>Whether the record is a grant report or a grocery split, AI is only as trustworthy as the specific data it's grounded in and the verification step before it counts as real.</p>
+      </div>
+
+      <h2>What I'd take from this back to work</h2>
+      <ul>
+        <li>Feed the model your real, current structure, not a generic default. Mine is a category list; at work it's a licensure standard.<sup><a href="#fn2" id="fnref2">2</a></sup> The specificity is what makes the output usable.</li>
+        <li>Keep AI output one step away from the system of record. A confirmation screen at home is the same idea as a review pass on an AI-populated dashboard.</li>
+        <li>Small, boring automations are worth building. This one just saves me a few minutes a week, but it's the same instinct that made the dashboard rebuild worth the effort: remove the busywork, not the judgment.</li>
+      </ul>
+
+      <p>
+        If you're building small tools to automate the parts of your own life
+        you actually hate, I'd enjoy comparing notes. Find me on
+        <a class="inline" href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a>,
+        or see the code on
+        <a class="inline" href="https://github.com/Dukko/ynab-receipt-scanner">GitHub</a>.
+      </p>
+
+      <p id="fn1" style="font-size:0.85rem;color:var(--muted);border-top:1px solid var(--grid);padding-top:0.75rem;margin-top:2rem;">
+        <a href="#fnref1">1.</a> I've since moved on to ZeroSum, so this app and the
+        budget it was built for are both retired. I'm leaving the post as written
+        rather than rewriting it into the present tense. Not everything you build
+        needs to outlive the thing it was built for, and it's fine to let a tool go
+        once it's done its job.
+      </p>
+
+      <p id="fn2" style="font-size:0.85rem;color:var(--muted);padding-top:0.5rem;">
+        <a href="#fnref2">2.</a> Obviously, that "real, current structure" never
+        includes anything confidential. No candidate names, no student records,
+        nothing that would touch FERPA, goes anywhere near a model. What gets fed
+        in is the shape of the data, category names, standard codes, field
+        structure, never the protected information sitting inside it.
+      </p>
+
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 Duccio Mondanelli. Views are my own, not my employer's.</p>
+    <p>I use AI tools to help draft and edit. The ideas and mistakes are still mine.</p>
+    <p><a href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/Dukko">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

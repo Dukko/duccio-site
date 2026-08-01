@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rebuilding program data infrastructure with AI &middot; Duccio Mondanelli</title>
+  <meta name="description" content="How a registered teacher apprenticeship program's spreadsheets drifted out of sync, and how a three-dashboard architecture plus AI-assisted reconciliation made the data trustworthy again.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="/">Duccio Mondanelli<span>.</span></a>
+    <nav class="site" aria-label="Site">
+      <a href="/">About</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/projects/">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <span class="label">Case study &middot; Data systems</span>
+      <h1>Rebuilding program data infrastructure with AI</h1>
+      <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~4 min read</p>
+
+      <h2>The problem: spreadsheets that disagreed</h2>
+
+      <p>
+        A registered teacher apprenticeship program generates data from every direction:
+        recruitment contacts across dozens of districts, applicants moving through
+        admissions, enrolled candidates with placements, mentors, and funding sources
+        that all need tracking. By our second recruitment cycle, that data lived in
+        overlapping spreadsheets maintained by different people, and they disagreed.
+        At one point our admitted-candidate count changed depending on which tab you
+        looked at. In a team meeting our director said it plainly: she was not sure
+        we could trust any of it. When a program is reporting to a federal grant and
+        a state licensing board, that is not a small problem.
+      </p>
+
+      <h2>The fix: a three-dashboard architecture</h2>
+
+      <p>
+        I quickly realized that the fix was not another, better spreadsheet. 
+        I needed to design a new architecture. Over a series of
+        working sessions, my team and I designed a three-dashboard system with clear 
+        ownership and a defined handoff between each stage of the pipeline. A district partnership
+        dashboard tracks every partner contact with a status view: confirmed, in
+        progress, stalled, brand new. A recruitment dashboard holds every prospect
+        from first contact, consolidated into one sheet with year tabs so history is
+        never overwritten. An all-programs dashboard is the operational source of
+        truth for enrolled candidates, including per-term funding columns so our
+        licensure and finance colleagues see the same numbers we do. The rule that
+        made it work is boring on purpose: a candidate moves from one dashboard to
+        the next only at a defined moment, and the person adding them tags the person
+        tracking them. A simple handing of the baton that now seems obvious, but was simply
+        not there before. Saved filter views replaced destructive filtering, so anyone
+        can pull a count by stage without wrecking someone else's work.
+      </p>
+
+      <h2>Where AI did the heavy lifting</h2>
+
+      <p>
+        AI is what made the migration feasible. Reconciling two years of conflicting
+        records by hand would have taken days of side-by-side squinting. Instead I set
+        up the clean structure and had my AI assistant do the heavy lifting: pulling every
+        candidate out of the legacy sheets into the new tabs, cross-checking the
+        tallies that never matched, and building year-over-year comparison slides
+        directly from the raw records rather than the summary tabs that had drifted.
+        The comparison surfaced real news, including that our apprenticeship and
+        residency enrollment had roughly doubled between cycles, and it explained
+        why our old summaries had been wrong. In one meeting I caught myself saying
+        it out loud: it is like actually having an assistant. Heh.
+      </p>
+
+      <h2>What keeps it trustworthy</h2>
+
+      <p>
+        Two design choices matter for anyone trying this in their own program. First,
+        AI output goes through human verification before it becomes the record. Every
+        AI-populated sheet got a review pass from the person who knew the candidates,
+        and our director's standing rule is that no number leaves the team until it
+        is verified. Second, the summaries now auto-populate from the source data, so
+        the reporting layer cannot move away from the truth layer again. The point
+        of automation here was never speed for its own sake. It was making a small
+        team's data trustworthy enough that a director can send growth numbers to
+        college leadership, or a grant report to a funder, without a week of
+        discussions first.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>AI earns trust by being verified, not by being confident. 
+          Reconciliation only counts once a human who knows the data has signed off on it.</p>
+      </div>
+
+      <p>
+        If you're rebuilding data infrastructure for a program like this, I'm happy to
+        compare notes. Find me on
+        <a class="inline" href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a>.
+      </p>
+
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 Duccio Mondanelli. Views are my own, not my employer's.</p>
+    <p>I use AI tools to help draft and edit. The ideas and mistakes are still mine.</p>
+    <p><a href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/Dukko">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
