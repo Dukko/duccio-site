@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a librarian who actually knows my taste: a post-mortem &middot; Duccio Mondanelli</title>
+  <meta name="description" content="A post-mortem on Hardcover AI Librarian, a self-hosted app that turns a personal reading history into individualized book recommendations, and what it has in common with building individualized pathways at NXT GEN Teach.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="/">Duccio Mondanelli<span>.</span></a>
+    <nav class="site" aria-label="Site">
+      <a href="/">About</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/projects/">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <span class="label">Post-mortem &middot; Lab project</span>
+      <h1>Building a librarian who actually knows my taste</h1>
+      <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~6 min read</p>
+
+      <p>
+        I read a lot, I log all of it in Hardcover, and I still can't get a
+        recommendation that isn't a shrug. "Readers who liked this book also
+        liked" is a popularity contest, not a suggestion. It's built for the
+        median person who read that book, and I am reliably not the median
+        person. So over a week in early February I built my own recommender:
+        Hardcover AI Librarian, a small self-hosted app that reads my actual
+        library and uses an LLM to suggest books, verified against real
+        catalog data before it ever shows me a title.
+      </p>
+
+      <p>
+        This is the post-mortem on that build, and on why it kept reminding
+        me of the day job.
+      </p>
+
+      <h2>The problem: recommendations built for the average reader</h2>
+
+      <p>
+        Every recommendation engine I'd used treated my library as a bag of
+        titles to be matched against everyone else's bags. That works fine
+        if you want the safest, most averaged-out next read. It's the same
+        failure mode as a single generic form trying to serve two very
+        different teacher licensure tracks: one instrument, one signal,
+        applied to people who don't actually have that much in common. The
+        aggregate flattens exactly the thing that makes a recommendation
+        useful, which is that it's for <em>me</em>, specifically, based on
+        what I've actually rated and tagged and reread.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>An average built from everyone tells you almost nothing about the one person in front of you.</p>
+      </div>
+
+      <h2>The build, in three moves</h2>
+
+      <h2>1. Turn a reading history into an actual taste profile</h2>
+      <p>
+        The app pulls my full "read" shelf from Hardcover's GraphQL API,
+        including my ratings, the community rating, tags, and release
+        year, and feeds the sixty most recent reads to the model as a
+        taste profile, alongside a hard exclusion list of everything I've
+        already finished. The point wasn't to summarize my library. It was
+        to give the model enough real, individual signal that it could stop
+        guessing and start reasoning about a specific reader.
+      </p>
+
+      <h2>2. Let AI reason over that data, not replace it</h2>
+      <p>
+        I wired up three providers, Gemini, GPT-4o, and Claude, so I could
+        pick the model doing the reasoning, and gave it my filters: mood,
+        genre, page count, year range, minimum rating. The AI's job is
+        narrow and specific: given this person's actual taste data and
+        these actual constraints, propose ten books and explain why each
+        one fits. That's the useful role for AI in something like this. It
+        finds patterns and makes connections across a taste profile faster
+        than I ever could by hand, but the profile itself is real data, not
+        a vibe.
+      </p>
+
+      <h2>3. Verify everything before it reaches me</h2>
+      <p>
+        LLMs invent books. Titles that don't exist, authors attached to the
+        wrong novel, plausible-sounding nonsense. So every recommendation
+        gets checked against Hardcover's own search index in parallel, and
+        anything with fewer than three community ratings gets dropped. Only
+        verified, real, well-attested books make it to the results table.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>An AI-generated individual pathway is only as trustworthy as the ground truth you check it against. Confidence isn't verification.</p>
+      </div>
+
+      <h2>Where this connects to NXT GEN</h2>
+
+      <p>
+        I didn't set out to build a metaphor for my job, but by the second
+        evening I noticed I was solving the same problem twice. At NXT GEN
+        Teach, the entire premise of a registered apprenticeship is that a
+        paraprofessional's path to licensure has to be individualized: their
+        starting skills, their licensure track, their classroom context, and
+        their pace are all different, and a generic pathway serves no one
+        well. That's exactly why we split one progress report into two
+        instruments instead of forcing ABS and ECSE candidates through the
+        same form. The instinct is identical to the one behind this app:
+        stop optimizing for the average person and build the pathway around
+        the actual data you have on the individual.
+      </p>
+
+      <p>
+        The verification step matters for the same reason in both places.
+        We don't let a coaching note or a progress rating stand on its own;
+        it has to trace back to an actual licensure standard, the same way
+        this app won't show me a book unless it traces back to an actual
+        catalog entry. In both cases, the leverage AI or automation gives
+        you is real, but it has to be tethered to ground truth or it just
+        produces confident-sounding noise at a larger scale than a human
+        would.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>Individualized pathways and AI-assisted insight both fail the same way when they lose their tether to real, specific data about the person they're for.</p>
+      </div>
+
+      <h2>What I'd take from this back to work</h2>
+      <ul>
+        <li>Personalization is a data problem before it's a modeling problem. The app is only as good as the taste profile it's given, the same way a coaching plan is only as good as the observation data behind it.</li>
+        <li>AI is best used narrowly: reasoning over real, specific data toward a real, specific person, not generating a generic answer and hoping it fits.</li>
+        <li>Any system that generates an individualized recommendation, whether it's a book or a next coaching move, needs a verification layer against ground truth, not just a plausible-sounding output.</li>
+        <li>The instinct to reject "one size fits all" is worth trusting even when it means more work, because it was right both times I followed it this year.</li>
+      </ul>
+
+      <p>
+        If you're thinking about where AI actually helps in a program built
+        around individualized pathways, versus where it's just automating
+        the average, I'd enjoy comparing notes. Find me on
+        <a class="inline" href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a>,
+        or see the code on
+        <a class="inline" href="https://github.com/Dukko/hardcover-recommendation-app">GitHub</a>.
+      </p>
+
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 Duccio Mondanelli. Views are my own, not my employer's.</p>
+    <p><a href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/Dukko">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
