@@ -32,9 +32,9 @@
 
       <p>
         I read a lot, I log all of it in Hardcover, and I still can't get a
-        recommendation that isn't a shrug. "Readers who liked this book also
-        liked" is a popularity contest, not a suggestion. It's built for the
-        median person who read that book, and I am reliably not the median
+        recommendation that isn't a whiff. "Readers who liked this book also
+        liked" is based on popularity, which is the issue with generic recommendation systems. It's built for the
+        median person who read that book, and I have found I am reliably not the median
         person. So over a week in early February I built my own recommender:
         Hardcover AI Librarian, a small self-hosted app that reads my actual
         library and uses an LLM to suggest books, verified against real
@@ -43,16 +43,19 @@
 
       <p>
         This is the post-mortem on that build, and on why it kept reminding
-        me of the day job.
+        me of my day job.
       </p>
 
       <h2>The problem: recommendations built for the average reader</h2>
 
       <p>
-        Every recommendation engine I'd used treated my library as a bag of
+        Every recommendation engine I triedeither gave me generic recommendations 
+        based on a single data point (a book) or treated my library as a bag of
         titles to be matched against everyone else's bags. That works fine
-        if you want the safest, most averaged-out next read. It's the same
-        failure mode as a single generic form trying to serve two very
+        if you want the safest, most averaged-out next read. That's not what
+        I was looking for. 
+        Incidentally, I realized It's the same failure mode as a single 
+        generic form trying to serve two very
         different teacher licensure tracks: one instrument, one signal,
         applied to people who don't actually have that much in common. The
         aggregate flattens exactly the thing that makes a recommendation
@@ -62,10 +65,10 @@
 
       <div class="callout">
         <p class="callout-label">The principle</p>
-        <p>An average built from everyone tells you almost nothing about the one person in front of you.</p>
+        <p>An average built from all the data points tells you almost nothing about the <em>one person</em> in front of you.</p>
       </div>
 
-      <h2>The build, in three moves</h2>
+      <h2>The build</h2>
 
       <h2>1. Turn a reading history into an actual taste profile</h2>
       <p>
@@ -73,12 +76,12 @@
         including my ratings, the community rating, tags, and release
         year, and feeds the sixty most recent reads to the model as a
         taste profile, alongside a hard exclusion list of everything I've
-        already finished. The point wasn't to summarize my library. It was
-        to give the model enough real, individual signal that it could stop
-        guessing and start reasoning about a specific reader.
+        already finished. The point wasn't to summarize my library. I wanted
+        to give the LLM enough real, individual signal that it could stop
+        guessing and start reasoning about a specific reader: me.
       </p>
 
-      <h2>2. Let AI reason over that data, not replace it</h2>
+      <h2>2. Let AI reason over that data, not guess</h2>
       <p>
         I wired up three providers, Gemini, GPT-4o, and Claude, so I could
         pick the model doing the reasoning, and gave it my filters: mood,
@@ -88,7 +91,7 @@
         one fits. That's the useful role for AI in something like this. It
         finds patterns and makes connections across a taste profile faster
         than I ever could by hand, but the profile itself is real data, not
-        a vibe.
+        just guesswork.
       </p>
 
       <h2>3. Verify everything before it reaches me</h2>
@@ -97,12 +100,12 @@
         wrong novel, plausible-sounding nonsense. So every recommendation
         gets checked against Hardcover's own search index in parallel, and
         anything with fewer than three community ratings gets dropped. Only
-        verified, real, well-attested books make it to the results table.
+        verified, real, database-sourced books make it to the results table.
       </p>
 
       <div class="callout">
         <p class="callout-label">The principle</p>
-        <p>An AI-generated individual pathway is only as trustworthy as the ground truth you check it against. Confidence isn't verification.</p>
+        <p>An AI-generated solution is only as trustworthy as the actual verifiable data you check it against. Confidence isn't truth.</p>
       </div>
 
       <h2>Where this connects to NXT GEN</h2>
@@ -114,7 +117,7 @@
         paraprofessional's path to licensure has to be individualized: their
         starting skills, their licensure track, their classroom context, and
         their pace are all different, and a generic pathway serves no one
-        well. That's exactly why we split one progress report into two
+        well. That's exactly why, for example, we split one progress report into two
         instruments instead of forcing ABS and ECSE candidates through the
         same form. The instinct is identical to the one behind this app:
         stop optimizing for the average person and build the pathway around
@@ -126,22 +129,22 @@
         We don't let a coaching note or a progress rating stand on its own;
         it has to trace back to an actual licensure standard, the same way
         this app won't show me a book unless it traces back to an actual
-        catalog entry. In both cases, the leverage AI or automation gives
-        you is real, but it has to be tethered to ground truth or it just
-        produces confident-sounding noise at a larger scale than a human
+        catalog entry. In both cases, the AI or automation gives
+        you a real efficiency advantage, but it has to be tethered to ground truth or it just
+        produces confident-sounding noise, at a larger and faster scale than a human
         would.
       </p>
 
       <div class="callout">
         <p class="callout-label">The principle</p>
-        <p>Individualized pathways and AI-assisted insight both fail the same way when they lose their tether to real, specific data about the person they're for.</p>
+        <p>Individualized pathways and AI-assisted insight both fail the same way when they lose their connection to real, specific data about the person they're for.</p>
       </div>
 
       <h2>What I'd take from this back to work</h2>
       <ul>
-        <li>Personalization is a data problem before it's a modeling problem. The app is only as good as the taste profile it's given, the same way a coaching plan is only as good as the observation data behind it.</li>
-        <li>AI is best used narrowly: reasoning over real, specific data toward a real, specific person, not generating a generic answer and hoping it fits.</li>
-        <li>Any system that generates an individualized recommendation, whether it's a book or a next coaching move, needs a verification layer against ground truth, not just a plausible-sounding output.</li>
+        <li>Personalization is a data problem before it's a modeling problem. The app is only as good as the taste profile it's given, the same way a coaching plan is only as good as the holistic data behind it.</li>
+        <li>AI is best used narrowly: reasoning over real, specific data toward a real, specific person, not guessworking its way to a generic answer and hoping it fits.</li>
+        <li>Any system that generates an individualized recommendation, whether it's a book or a next coaching move, needs a verification layer against actual verifiable sources, not just a plausible-sounding output.</li>
         <li>The instinct to reject "one size fits all" is worth trusting even when it means more work, because it was right both times I followed it this year.</li>
       </ul>
 
