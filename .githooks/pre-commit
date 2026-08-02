@@ -1,0 +1,6 @@
+#!/bin/sh
+# Regenerate feed.xml when a writing post is staged, so it never drifts
+# out of sync with writing/index.html.
+if git diff --cached --name-only | grep -q '^writing/'; then
+  node scripts/build-feed.js && git add feed.xml
+fi

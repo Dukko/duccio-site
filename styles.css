@@ -346,6 +346,27 @@ article.post .callout p {
   margin: 0;
 }
 
+article.post figure {
+  margin: 1.6rem 0;
+  max-width: var(--measure);
+}
+
+article.post figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--grid);
+  border-radius: 6px;
+}
+
+article.post figcaption {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
+
 .draft-note {
   background: #fdf6e7;
   border: 1px solid #e8d5a8;

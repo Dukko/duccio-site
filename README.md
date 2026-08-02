@@ -15,6 +15,18 @@ Personal site. Static HTML and CSS, no build step, no framework, no dependencies
     └── index.html                          Work + Lab shelves
 ```
 
+## RSS feed
+
+`feed.xml` is generated from `writing/index.html` (entry order/blurbs) and each
+post's `<meta name="date" content="YYYY-MM-DD">` tag — it is not hand-edited.
+
+- Regenerate manually: `node scripts/build-feed.js`
+- It also regenerates automatically on `git commit` whenever a `writing/`
+  file is staged, via the hook in `.githooks/pre-commit`. On a fresh clone,
+  enable it once with `git config core.hooksPath .githooks`.
+- Adding a new post: add its `<meta name="date">` tag, add it to
+  `writing/index.html`'s entry list, then commit (or run the script by hand).
+
 ## Design tokens (for consistency in future pages)
 
 - Paper `#F6F7F5`, Ink `#1B2430`, Blueprint `#2B5BB8`, Marker `#B07A18`, Grid `#D8DCD6`, Muted `#5C6672`
