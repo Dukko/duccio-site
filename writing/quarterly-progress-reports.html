@@ -18,6 +18,38 @@
 .gl-2 {
   text-transform: none; font-weight: 300;
 }
+.construction-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  background: #fff6db;
+  border: 1px solid #f0c33c;
+  border-left: 4px solid var(--marker);
+  border-radius: 4px;
+  padding: 0.9rem 1.1rem;
+  margin: 1.4rem 0;
+  max-width: var(--measure);
+}
+.construction-notice .icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--marker);
+  color: #fff;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 700;
+}
+.construction-notice p {
+  margin: 0;
+  color: #6b4c05;
+}
+.construction-notice strong {
+  color: #4d3703;
+}
 </style>
 </head>
 <body>
@@ -40,59 +72,67 @@
       <h1>Designing quarterly progress reports that actually align to licensure standards</h1>
       <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~8 min read</p>
 
+      <div class="construction-notice" role="note">
+        <span class="icon" aria-hidden="true">!</span>
+        <p><strong>Watch your steps! This is a construction zone.</strong> This case study is actually a work in progress right now.</p>
+      </div>
+
       <p>
-        Every teacher apprenticeship program has a quarterly progress report. Almost
-        none of them can answer the only question the report exists to answer: is this
-        person on track to become the specific kind of teacher we are licensing them
-        to be?
+        Every teacher apprenticeship program has a quarterly progress report. It's rare to 
+        find one that actually measures progress. Most of them are generic forms that ask 
+        the same questions for every candidate, and none of them can answer the only question 
+        the report exists to answer: is this person on track to become the specific 
+        kind of teacher we are licensing them to be?
       </p>
 
       <p>
-        Ours couldn't either, at first. This is the story of how I rebuilt it, so that
-        you can skip the mistakes.
+        Ours couldn't either, at first. This is the story of how I rebuilt it, and what other programs can borrow
+        from the process.
       </p>
 
-      <h2>The problem: one generic form for two different licenses</h2>
+      <h2>The classic problem: one generic form for two different licenses</h2>
 
       <p>
         Our program prepares special education teachers in two Minnesota licensure
         tracks: Academic and Behavioral Strategist (ABS), which is K-12, and Early
         Childhood Special Education (ECSE), which runs birth to age six. These are
-        significantly different jobs. An ECSE teacher writes IFSPs, coaches families in
-        natural environments, and works under Part C requirements for infants and
-        toddlers. An ABS teacher runs FBAs and BIPs, designs academic interventions,
-        and manages K-12 IEP and eligibility processes.
+        almost completely different jobs. An ECSE teacher writes IFSPs, coaches families in
+        natural environments, and works with infants and toddlers, with all the developmental
+        considerations of the case. An ABS teacher runs FBAs and BIPs, 
+        designs academic interventions, and manages K-12 IEP and eligibility processes.
       </p>
 
       <p>
-        Our original progress report treated them identically. The content standards
-        section used four vague categories like "foundational knowledge" that mapped
-        to no actual standard in either license. The form never distinguished an IFSP
-        from an IEP. It had no notion of what a candidate should be able to do by
-        quarter two versus quarter four. Mentors filled it out because they had to,
-        and the data told us almost nothing.
+        Our original progress report we were planning to use
+        treated them almost identically. The content standards
+        section used four vague categories like "foundational knowledge" which, incidentally,
+        mapped to no actual standard in either license. The form never distinguished an IFSP
+        from an IEP! I immediately spotted the alarm bells: as a former Special Educator and mentor,
+        overworked and with little to no time in my day, I would have filled it out because I had to, 
+        and the data would have told us almost nothing.
       </p>
 
       <blockquote>
-        A progress report that doesn't map to the licensure standards isn't measuring
-        progress. It's checking a box, assuming compliance with the act of
-        filling out a form.
+        A progress report that isn't accessible to the mentors will not measure
+        progress. It's checking a box, creating the feeling of data collection while
+        providing little actual insight.
       </blockquote>
 
-      <h2>The redesign, in four moves</h2>
+      <h2>The redesign</h2>
 
       <h2>1. Split the form</h2>
       <p>
-        The first decision was the hardest to accept: one form for two programs was
-        the original problem, and no amount of clever section design would fix it. We
+        The first decision was the hardest to push for: one form for two programs was
+        the foundational problem, and no amount of clever section design would fix it. We
         built two separate instruments, visually distinct at a glance so nobody ever
         grabs the wrong one. Colors are used to create clarity, implementing core ideas
-        of <a href="https://uxplanet.org/successful-ux-design-is-intentional-design-73398a91ced">intentional design</a> in a space often constrained by academic and insitutional
-        bindings.
+        of <a href="https://uxplanet.org/successful-ux-design-is-intentional-design-73398a91ced">intentional design</a>
+         in a space often constrained by academic and insitutional bindings.
       </p>
       <div class="callout">
-        <p class="callout-label">The principle</p>
-        <p>Each program needs its own visual identity and set of tools. One size fits all ends up confusing everyone, starting with the mentors.</p>
+        <p class="callout-label">The obvious idea</p>
+        <p>Each program needs its own visual identity and set of tools. 
+          One size fits all ends up confusing everyone, starting with the mentors.</p>
       </div>
 
       <h2>2. Map every item to a real standard</h2>
@@ -100,19 +140,19 @@
         Every content item on each form now traces to something a licensing body or
         the program itself actually requires: Minnesota's <a href="https://mn.gov/pelsb/assets/Standards%20of%20Effective%20Practice%20-%2006.2023%20-%20Accessible_tcm1113-579957.pdf">PELSB standards</a> for each
         license, the program's core skills, and <a href="https://highleveragepractices.org/">High Leverage Practices</a>. If an item
-        couldn't be traced, it got cut. This sounds obvious. It required going
+        couldn't be traced, it got cut. This sounds obvious in retrospect, but it required going
         line by line through the standards for both licenses and being willing to
         delete sections people were used to.
       </p>
       <p class="gl-2">
-        One rule from that process worth stealing: use only the frameworks your
+        One rule from that process worth borrowing: use only the the frameworks your
         program has actually adopted. Our first redesign draft included a
         well-regarded national framework that we don't use, because it seemed like it
-        belonged. It didn't. Borrowed rigor is fake rigor.
+        belonged. What it did was create confusion and waste time for everyone.
       </p>
       <div class="callout gl-2">
-        <p class="callout-label">The principle</p>
-        <p>Everything tracked must be valuable. Stop tracking data you don't need "just in case".</p>
+        <p class="callout-label">The obvious idea</p>
+        <p>Everything tracked must be actual worthwhile data. Stop tracking stuff you don't need "just in case".</p>
       </div>
 
       <h2>3. Build in quarter-based progression</h2>
@@ -121,12 +161,12 @@
         telling candidates that nothing is supposed to change. We wrote explicit
         expectations by phase, from observation through co-teaching to independent
         practice, so a "developing" rating in an early quarter reads as normal and the
-        same rating in a late quarter reads as a flag. The form now carries the
+        same rating in a late quarter will read as a flag. The forms now carry the
         program's theory of growth inside it.
       </p>
       <div class="callout">
-        <p class="callout-label">The principle</p>
-        <p>If we need a new form each quarter, we lose data.</p>
+        <p class="callout-label">The obvious idea</p>
+        <p>If we ask the same questions in different quarters, we're likely to get the same answers.</p>
       </div>
 
       <h2>4. Design for the mentor's thirty seconds</h2>
@@ -140,27 +180,22 @@
         impossible to miss.
       </p>
       <div class="callout">
-        <p class="callout-label">The principle</p>
-        <p>If the busiest person in the loop can't complete the instrument accurately in one sitting, the instrument is wrong.</p>
+        <p class="callout-label">The obvious idea</p>
+        <p>If the busiest person in the loop can't complete the instrument accurately 
+          in one sitting, it's the instrument that is wrong.</p>
       </div>
-
-      <h2>What changed</h2>
-      <p>
-        Our data collection serves us, instead of fighting us. Where we previously
-        struggled to identify candidate readiness, we now have strong, specific
-        evidence to support placement and intervention decisions. The results speak
-        for themselves: candidates are on track for their year-long student teaching;
-        mentors report high satisfaction in the data-reporting process; the program is
-        progressing smoothly.
-      </p>
 
       <h2>What I'd tell another program</h2>
       <ul>
-        <li>If you serve multiple licensure areas, you need multiple instruments. One size fits all doesn't work and makes everything more confusing.</li>
-        <li>Link every item to a standard or cut it. It's great to be inspired by frameworks, but if your institution isn't using them, it's wasted time for everyone.</li>
-        <li>Embed progression in the process. The form should already show what quarter it is.</li>
-        <li>Optimize for the mentor. If the mentor is overwhelmed, there's no data for the office to analyze.</li>
-        <li>Whoever on your team can script document generation is worth their weight in gold. Hand-maintaining multiple documents is how things get lost.</li>
+        <li>If you serve multiple licensure areas, you need multiple instruments. 
+          One size fits all doesn't work and makes everything more confusing.</li>
+        <li>Link every item to a standard or cut it. 
+          It's great to be inspired by frameworks, but if your institution isn't using them, 
+          it's wasted time for everyone.</li>
+        <li>Embed progression in the tools you use. The form should already show what quarter it is.</li>
+        <li>Optimize for the mentor. If the mentor is overwhelmed, there's no data for us to analyze.</li>
+        <li>Whoever on your team can script document generation is worth their weight in gold. 
+          Hand-maintaining multiple documents is how things get lost.</li>
         <li>Create templates, centralize, set up dashboards.</li>
       </ul>
 
