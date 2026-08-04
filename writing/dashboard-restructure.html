@@ -11,6 +11,61 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
+<style id="gl-editor-styles">
+.pop-text {
+  position: relative;
+  display: inline-block;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  color: var(--ink);
+  padding: 0 0.2em;
+  background-image: linear-gradient(104deg, rgba(176,122,24,0) 0.5%, rgba(240,195,60,0.85) 3%, rgba(240,195,60,0.85) 96%, rgba(176,122,24,0) 99.5%);
+  background-repeat: no-repeat;
+  background-size: 0% 0.55em;
+  background-position: 0 82%;
+}
+
+.pop-text.is-visible {
+  animation: pop-sweep 1s ease-out both;
+}
+
+@keyframes pop-sweep {
+  0% { background-size: 0% 0.55em; }
+  100% { background-size: 100% 0.55em; }
+}
+
+.circle-text {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.15em;
+}
+
+.circle-text .circle-svg {
+  position: absolute;
+  inset: -0.32em -0.4em;
+  width: calc(100% + 0.8em);
+  height: calc(100% + 0.9em);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.circle-text .circle-svg path {
+  fill: none;
+  stroke: var(--blueprint);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+}
+
+.circle-text.is-visible .circle-svg path {
+  animation: draw-circle 0.85s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+}
+
+@keyframes draw-circle {
+  to { stroke-dashoffset: 0; }
+}
+</style>
 </head>
 <body>
 
@@ -32,26 +87,26 @@
       <h1>Rebuilding program data infrastructure with AI</h1>
       <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~4 min read</p>
 
-      <h2>The problem: spreadsheets that disagreed</h2>
+      <h2>The problem: too many cooks</h2>
 
       <p>
-        A registered teacher apprenticeship program generates data from every direction:
-        recruitment contacts across dozens of districts, applicants moving through
-        admissions, enrolled candidates with placements, mentors, and funding sources
-        that all need tracking. By our second recruitment cycle, that data lived in
-        overlapping spreadsheets maintained by different people, and they disagreed.
-        At one point our admitted-candidate count changed depending on which tab you
+        If your registered teacher apprenticeship is anything like mine, 
+        it generates data from every direction: recruitment contacts across dozens of districts, 
+        applicants moving through admissions, enrolled candidates with placements, 
+        mentors, and funding sources, just to mention a few things. 
+        By our second recruitment cycle, that data lived in
+        overlapping spreadsheets maintained by different people, which can be fine, I guess.
+        Except, ours had drifted out of sync. At one point our admitted-candidate count changed depending on which tab you
         looked at. In a team meeting our director said it plainly: she was not sure
-        we could trust any of it. When a program is reporting to a federal grant and
-        a state licensing board, that is not a small problem.
+        we could trust any of it. When your director tells you she has a problem with your data, <span class="pop-text">you have a problem</span>.
       </p>
 
-      <h2>The fix: a three-dashboard architecture</h2>
+      <h2>The fix: we need to start this over</h2>
 
       <p>
-        I quickly realized that the fix was not another, better spreadsheet. 
-        I needed to design a new architecture. Over a series of
-        working sessions, my team and I designed a three-dashboard system with clear 
+        I quickly realized that the fix was not another, better spreadsheet. Or, well, kinda? 
+        I needed a better spreadsheet <span class="circle-text">system<svg class="circle-svg" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true"><path d="M8,26 C4,10 32,3 60,3 C96,3 117,9 113,25 C117,43 88,47 59,47 C24,47 4,41 8,26" /></svg></span>.
+        Over a series of working sessions, my team and I designed a three-dashboard system with clear 
         ownership and a defined handoff between each stage of the pipeline. A district partnership
         dashboard tracks every partner contact with a status view: confirmed, in
         progress, stalled, brand new. A recruitment dashboard holds every prospect
@@ -63,43 +118,46 @@
         the next only at a defined moment, and the person adding them tags the person
         tracking them. A simple handing of the baton that now seems obvious, but was simply
         not there before. Saved filter views replaced destructive filtering, so anyone
-        can pull a count by stage without wrecking someone else's work.
+        can pull a count by stage without wrecking someone else's work. And, more importantly, 
+        everyone is looking in the same place. No more "Duccio's version" or "the old sheet." 
       </p>
 
-      <h2>Where AI did the heavy lifting</h2>
+      <h2>Where AI played its role</h2>
 
       <p>
         AI is what made the migration feasible. Reconciling two years of conflicting
-        records by hand would have taken days of side-by-side squinting. Instead I set
-        up the clean structure and had my AI assistant do the heavy lifting: pulling every
+        records by hand would have taken days of side-by-side squinting and a lot of coffee. 
+        Instead, since I stopped drinking coffee, I needed some help. Turns out, LLMs can be excellent assitants.
+        I set up the clean structure and had my AI friend do the heavy lifting: pulling every
         candidate out of the legacy sheets into the new tabs, cross-checking the
         tallies that never matched, and building year-over-year comparison slides
         directly from the raw records rather than the summary tabs that had drifted.
         The comparison surfaced real news, including that our apprenticeship and
-        residency enrollment had roughly doubled between cycles, and it explained
-        why our old summaries had been wrong. In one meeting I caught myself saying
-        it out loud: it is like actually having an assistant. Heh.
+        residency enrollment had roughly <span class="pop-text">doubled</span> between cycles, and it explained
+        a few kinks in the previous system which explained why our old summaries had been wrong. 
+        In one meeting I caught myself saying it out loud: it is like actually having an assistant. Heh.
       </p>
 
-      <h2>What keeps it trustworthy</h2>
+      <h2>What's the lesson regarding AI</h2>
 
       <p>
-        Two design choices matter for anyone trying this in their own program. First,
-        AI output goes through human verification before it becomes the record. Every
+        It would have likely be easier to just tell <i>chat</i> to whip up a new spreadsheet.
+        Two design choices were paramount for me, though, and I think they will
+        matter for anyone trying this in their own program. First,
+        AI output <span class="circle-text">ALWAYS<svg class="circle-svg" viewBox="0 0 120 50" preserveAspectRatio="none" aria-hidden="true"><path d="M8,26 C4,10 32,3 60,3 C96,3 117,9 113,25 C117,43 88,47 59,47 C24,47 4,41 8,26" /></svg></span> goes through human verification before it becomes the record. Every
         AI-populated sheet got a review pass from the person who knew the candidates,
-        and our director's standing rule is that no number leaves the team until it
-        is verified. Second, the summaries now auto-populate from the source data, so
-        the reporting layer cannot move away from the truth layer again. The point
-        of automation here was never speed for its own sake. It was making a small
-        team's data trustworthy enough that a director can send growth numbers to
-        college leadership, or a grant report to a funder, without a week of
-        discussions first.
+        and if we were not sure, we verified it before assuming. 
+        Second, the data summaries we use to report now auto-populate from the source data, so
+        our external-facing numbers are always accurate. The point
+        of automation here was never speed for its own sake. Automation's value is when it creates systems
+        that simplify and amplify the human work of the team. No amount of LLMs can replace the deep knowledge of
+        our candidates that the recruiter has established over several get-to-know-you calls, or the navigator's understanding
+        of the program's requirements and the candidate's progress.
       </p>
 
       <div class="callout">
         <p class="callout-label">The principle</p>
-        <p>AI earns trust by being verified, not by being confident. 
-          Reconciliation only counts once a human who knows the data has signed off on it.</p>
+        <p>AI is valuable when it is verified and when it amplifies knowledge, not when it attempts to replace it.</p>
       </div>
 
       <p>
@@ -120,5 +178,21 @@
   </div>
 </footer>
 
+<script>
+  var popEls = document.querySelectorAll('.pop-text, .circle-text');
+  if ('IntersectionObserver' in window && popEls.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    popEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    popEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+</script>
 </body>
 </html>
