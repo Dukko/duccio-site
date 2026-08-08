@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SITE_URL = 'https://ducciomondanelli.com';
+const SITE_URL = 'https://whois.ducciomondanelli.com';
 
 function escapeXml(str) {
   return str

@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Duccio Mondanelli &#8212; Writing</title>
-    <link>https://ducciomondanelli.com/writing/</link>
-    <atom:link href="https://ducciomondanelli.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://whois.ducciomondanelli.com/writing/</link>
+    <atom:link href="https://whois.ducciomondanelli.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Case studies and field notes on the operational side of teacher apprenticeship programs, special education licensure, and program systems design.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Aug 2026 12:24:08 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 08 Aug 2026 23:55:15 GMT</lastBuildDate>
     <item>
       <title>Teaching an app to read a receipt</title>
-      <link>https://ducciomondanelli.com/writing/ynab-receipt-scanner.html</link>
-      <guid>https://ducciomondanelli.com/writing/ynab-receipt-scanner.html</guid>
+      <link>https://whois.ducciomondanelli.com/writing/ynab-receipt-scanner.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/ynab-receipt-scanner.html</guid>
       <pubDate>Sat, 01 Aug 2026 12:00:00 GMT</pubDate>
       <description>A post-mortem on a self-hosted PWA that turns a photographed receipt into a split YNAB transaction using AI vision, and why the fix for drifting grocery categories turned out to be the same fix behind our program data rebuild.</description>
     </item>
     <item>
       <title>Rebuilding program data infrastructure with AI</title>
-      <link>https://ducciomondanelli.com/writing/dashboard-restructure.html</link>
-      <guid>https://ducciomondanelli.com/writing/dashboard-restructure.html</guid>
+      <link>https://whois.ducciomondanelli.com/writing/dashboard-restructure.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/dashboard-restructure.html</guid>
       <pubDate>Sat, 01 Aug 2026 12:00:00 GMT</pubDate>
       <description>Two years of overlapping spreadsheets drifted out of sync until nobody could agree on our own candidate count. How a three-dashboard architecture and AI-assisted reconciliation made the data trustworthy again, and the two rules that keep it that way.</description>
     </item>
     <item>
       <title>Building a librarian who actually knows my taste</title>
-      <link>https://ducciomondanelli.com/writing/hardcover-ai-librarian.html</link>
-      <guid>https://ducciomondanelli.com/writing/hardcover-ai-librarian.html</guid>
+      <link>https://whois.ducciomondanelli.com/writing/hardcover-ai-librarian.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/hardcover-ai-librarian.html</guid>
       <pubDate>Fri, 31 Jul 2026 12:00:00 GMT</pubDate>
       <description>A post-mortem on a self-hosted app that turns my Hardcover reading history into individualized, AI-generated book recommendations, verified against real catalog data, and why the build kept echoing the individualized-pathway work I do at NXT GEN Teach.</description>
     </item>
     <item>
-      <title>Designing quarterly progress reports that actually align to licensure standards</title>
-      <link>https://ducciomondanelli.com/writing/quarterly-progress-reports.html</link>
-      <guid>https://ducciomondanelli.com/writing/quarterly-progress-reports.html</guid>
+      <title>WIP - Designing quarterly progress reports that actually align to licensure standards</title>
+      <link>https://whois.ducciomondanelli.com/writing/quarterly-progress-reports.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/quarterly-progress-reports.html</guid>
       <pubDate>Tue, 14 Jul 2026 12:00:00 GMT</pubDate>
       <description>Most apprenticeship progress reports are generic by default and less than useful by consequence. How we rebuilt ours around the actual licensure standards for two different special education tracks, and why one form for two programs was the original mistake.</description>
     </item>
     <item>
       <title>We Need Communities, Not Heroes</title>
-      <link>https://ducciomondanelli.com/writing/we-need-communities-not-heroes.html</link>
-      <guid>https://ducciomondanelli.com/writing/we-need-communities-not-heroes.html</guid>
+      <link>https://whois.ducciomondanelli.com/writing/we-need-communities-not-heroes.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/we-need-communities-not-heroes.html</guid>
       <pubDate>Sun, 26 Apr 2026 12:00:00 GMT</pubDate>
       <description>On Justin Reich&apos;s &quot;Failure to Disrupt&quot;: why lasting change in education comes from the slow work of communities, not from the next disruptor or killer app.</description>
     </item>
     <item>
       <title>Failure to Disrupt: Beware of the Hype Men</title>
-      <link>https://ducciomondanelli.com/writing/failure-to-disrupt.html</link>
-      <guid>https://ducciomondanelli.com/writing/failure-to-disrupt.html</guid>
+      <link>https://whois.ducciomondanelli.com/writing/failure-to-disrupt.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/failure-to-disrupt.html</guid>
       <pubDate>Mon, 06 Apr 2026 12:00:00 GMT</pubDate>
       <description>What MOOC completion rates and the edtech Matthew effect reveal about who online learning actually serves, and who it leaves behind.</description>
     </item>
     <item>
       <title>From Hornbooks to LLMs</title>
-      <link>https://ducciomondanelli.com/writing/from-hornbooks-to-llms.html</link>
-      <guid>https://ducciomondanelli.com/writing/from-hornbooks-to-llms.html</guid>
+      <link>https://whois.ducciomondanelli.com/writing/from-hornbooks-to-llms.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/from-hornbooks-to-llms.html</guid>
       <pubDate>Thu, 05 Feb 2026 12:00:00 GMT</pubDate>
       <description>A brief look at Ed Tech as an accessibility tool, from the 18th-century hornbook to AI tutors, and why the tools were never the point.</description>
     </item>
