@@ -6,7 +6,14 @@
     <atom:link href="https://whois.ducciomondanelli.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Case studies and field notes on the operational side of teacher apprenticeship programs, special education licensure, and program systems design.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 Aug 2026 23:55:15 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 03:35:52 GMT</lastBuildDate>
+    <item>
+      <title>Good idea, wrong home: a post-mortem of my KOReader patch</title>
+      <link>https://whois.ducciomondanelli.com/writing/xray-patch.html</link>
+      <guid>https://whois.ducciomondanelli.com/writing/xray-patch.html</guid>
+      <pubDate>Mon, 10 Aug 2026 12:00:00 GMT</pubDate>
+      <description>A post-mortem of my KOReader patch for Entity Footnotes, the &quot;no&quot; that reshaped it, and why solving it right meant not touching the plugin at all.</description>
+    </item>
     <item>
       <title>Teaching an app to read a receipt</title>
       <link>https://whois.ducciomondanelli.com/writing/ynab-receipt-scanner.html</link>
