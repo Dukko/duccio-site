@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good idea, wrong home: a post-mortem of my KOReader patch &middot; Duccio Mondanelli</title>
+  <meta name="description" content="A post-mortem of my KOReader patch for Entity Footnotes and the lessons learned about system boundaries.">
+  <meta name="date" content="2026-08-10">
+  <link rel="alternate" type="application/rss+xml" title="Duccio Mondanelli &middot; Writing" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="/">Duccio Mondanelli<span>.</span></a>
+    <nav class="site" aria-label="Site">
+      <a href="/">About</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/projects/">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <span class="label">Post-mortem &middot; Community patch</span>
+      <h1>Good idea, wrong home: a post-mortem of my KOReader patch</h1>
+      <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~[N] min read</p>
+
+      <p>
+        I've been dabbling in KOReader customization for a while, and one of the most interesting
+        plugins I found was <a class="inline" href="https://github.com/koreader/xray.koplugin">xray.koplugin</a>.
+        It already lets an AI identify characters/places/terms in whatever book you're
+        reading in KOReader. It's essentially the X-Ray feature Amazon built on their Kindles, but AI powered and free.
+        For the kind of reading I do, it was already doing a lot of things right.
+        What I found myself missing was the final step in the puzzle: a way to know
+        who/what an entity was without leaving the page. A couple of evenings later,
+        I built the Entity Footnotes patch to underline those entities right in the
+        text with a tap-to-reveal AI description, reusing the same
+        tap interaction the plugin already had for unit conversions.
+        That part is a little techy, but the more interesting part is that the maintainer of the plugin said yes to the idea and no to the location, which is the real story here.
+      </p>
+
+      <p>
+        This is the post-mortem on that patch, on the "no" that reshaped it,
+        and on why solving it right meant not touching the plugin at all.
+      </p>
+
+      <h2>The problem: focused reading, not distracted tapping</h2>
+
+      <p>
+        As I mentioned above, <a href="https://github.com/ultimatejimmy">ultimatejimmy</a> made a very strong plugin.
+        The plugin already did a lot of things right: it let you scan the book for entities,
+        and it let you tap on them to get more information.
+        But it was missing one key thing: a way to surface that information in-line while reading,
+        without having to leave the page.
+        A straightforward version of the feature would have been to scan the entire book at once and populate the entity list,
+        but that would have felt wrong in practice because X-Ray doesn't work that way.
+        Entities are discovered progressively as the AI scans further into the book, not all at once.
+        Can you imagine if you got a pop-up at the beginning of the book that told you a character
+        is going to die in chapter 10? That would be a pretty terrible experience.
+        So the solution had to be more nuanced than simply scanning once and being done with it.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>The real shape of a problem only shows up once you look at how the data actually arrives, 
+          not how you assumed it would.</p>
+      </div>
+
+      <h2>The build</h2>
+
+      <h3>1. Don't fork it, don't ask to merge it — patch it at runtime</h3>
+      <p>
+        Forking the plugin was my first instinct, and in this case it was the wrong one.
+        Forking the whole code would have meant that I would have to maintain it myself,
+        and that would have been a lot of work for essentially a small feature.
+        The maintainer's "no" was useful in a very practical way: it forced me to think about the
+        problem from a different angle, and it led me to the solution of patching the plugin
+        at runtime instead of forking it.
+        KOReader is a Lua-based system, and Lua is a very dynamic language.
+        That made it possible to change the behavior of existing code at runtime,
+        which is exactly what I did with the Entity Footnotes patch.
+      </p>
+
+      <h3>2. Put the update lifecycle where the meat actually is</h3>
+      <p>
+        Because of this architecture decision, the patch is essentially
+        a separate entity from the plugin itself. It can be updated independently,
+        and it doesn't require any changes to the plugin's codebase. This means that
+        my work as a maintainer of the patch is completely separate from the maintainer of the plugin.
+        In other words, I have freed up the maintainer of the plugin from having to worry 
+        about the update lifecycle of the patch, and I have taken on that responsibility myself.
+        In turn, making it a small responsibility in itself, ensuring I can support it
+        while doing other stuff (i.e. my day job, parenting my kid, etc.).
+      </p>
+
+      <h3>3. Keeping hardware constraint in mind, not just the feature</h3>
+      <p>
+        I quickly realized that there's an additional reason the original plugin
+        doesn't scan the entire book at once: e-ink devices are slow, 
+        and scanning the entire book at once would have been a very slow operation. 
+        My initial version did just that, and it was a terrible experience.
+        The solution was to scan the book in chunks, and to do it in the background,
+        so that the user could continue reading without being blocked by the scanning process.
+        I could have ignored this constraint and just built the feature I wanted, 
+        but that would have been a bad experience for the user, and ultimately,
+        the user experience is what matters most.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>The right system boundary isn't only about the features; it's about
+          scalability and the end-user experience. You can always add features,
+          but you can't always fix a bad experience.</p>
+      </div>
+
+
+      <h2>Things kept breaking</h2>
+
+      <ul>
+        <li>Bug 1: Whole book scanning hangs the whole experience. 
+          You can't just build in abstract.</li>
+        <li>Bug 2: Infinite rescan loop on a book with zero matching entities. 
+          If you don't test thoroughly, a small fix can have unintended consequences.</li>
+        <li>Bug 3: Localization keys leaking as raw text in the UI. 
+          Polish is important. That's what drives the user experience.</li>
+      </ul>
+
+      <p>
+        I won't bore you with the details of each bug, but the point is that they were all
+        real, specific constraints that I had to work around.
+        Most importantly, I had to decide what to do about the rescan loop bug: try to fix it,
+        or accept it as a known limitation. I chose the second option, accepting the tradeoff of
+        case-sensitive matching to reduce false positives, even if that meant ALL-CAPS text would be missed.
+        That is a compromise for future Duccio, but for now the patch is stable and usable.
+        And that is what mattered most to me.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>Sometimes you can't fix all the problems, but you can choose your failure mode on purpose.</p>
+      </div>
+
+      <h2>Taking "no" as data, not a rejection</h2>
+
+      <p>
+        The original PR was a simple enough idea on paper: 
+        make the feature feel more native by letting it 
+        hook into the plugin's own scan lifecycle. 
+        The maintainer's objection was not a vague "not now". 
+        It was a very specific concern about repeated rescanning becoming a UX commitment 
+        they did not want to guarantee across every e-ink device out there, 
+        with all their different performance profiles and quirks. 
+        That was exactly the kind of feedback that deserves respect, 
+        because it was about the real experience of using the software, 
+        not about ego or scope. So I didn't try to win the argument by pushing harder. 
+        I took the boundary seriously and built the patch around it instead: 
+        keep the experience useful, keep the plugin's ownership intact, 
+        and let me absorb the operational complexity of this patch without 
+        making the maintainer sign up for it.
+      </p>
+
+      <p>
+        I also tried to meet the project where it already was. X-Ray itself
+        was built by ultimatejimmy, and the patch I wrote leaned into the
+        same instincts the plugin already used: reusing its existing
+        monkey-patch approach instead of inventing some parallel workflow or
+        new abstraction. That felt like a form of respect, too. Not because
+        it made the patch more official or more likely to get merged, but
+        because it let me work inside the system the maintainer had already
+        designed, on their terms, and leave the project's shape intact.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>Sometimes, a "no" is a precise description of a boundary, and the 
+          collaborative move is finding the shape that fits it, not arguing for your solution.</p>
+      </div>
+
+
+      <h2>Where this connects to my day job</h2>
+
+      <p>
+        The same lesson showed up in my day job at NXT GEN Teach.
+        When I think about teacher candidates, I don't think the job is to design interventions
+        around some idealized version of who they are supposed to be,
+        or what a "good" candidate can be expected to do in a perfect week.
+        It is to look at the actual conditions they live under: their schedules, their energy, their obligations,
+        their access to support. Only then do you shape the intervention around that reality.
+        If a support system only works in the abstract, it will fail the people it is meant to serve,
+        and that is exactly the kind of mistake I tried to avoid in the patch.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>Good design starts by respecting the situation a person is actually living, not the idealized version we wish they had.</p>
+      </div>
+
+
+      <h2>What I'd take from this back to work</h2>
+      <ul>
+        <li>Start by treating the problem as a real-world constraint problem, not a clean abstract one.</li>
+        <li>When you design a system, make it fit the conditions people actually work under, 
+          not the conditions you wish they had.</li>
+        <li>Build with the people who will use it, and make room for their feedback so the fix can survive real life.</li>
+        <li>The strongest interventions are usually simple, practical, and shaped by the messiness of actual practice.</li>
+      </ul>
+
+      <p>
+        If you’ve made it this far, you’re probably either actually interested in the patch or 
+        simply the sort of person who enjoys taking a small annoyance and making it behave better. 
+        If that sounds like your kind of fun, the patch is ready to try, the code is here on
+        <a class="inline" href="https://github.com/Dukko/xray-patch">GitHub</a>,
+        and the original discussion is over on
+        <a class="inline" href="https://github.com/ultimatejimmy/xray.koplugin/pull/100">xray.koplugin#100</a>.
+        Find me on
+        <a class="inline" href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a>
+        if you want to compare notes or swap ideas.
+      </p>
+
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 Duccio Mondanelli. Views are my own, not my employer's.</p>
+    <p>I use AI tools to help draft and edit. The ideas and mistakes are still mine.</p>
+    <p><a href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/Dukko">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
