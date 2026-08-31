@@ -6,13 +6,13 @@
     <atom:link href="https://whois.ducciomondanelli.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Case studies and field notes on the operational side of teacher apprenticeship programs, special education licensure, and program systems design.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Aug 2026 17:13:42 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2026 17:29:42 GMT</lastBuildDate>
     <item>
       <title>One performance, one page: designing my mentor training as a real instructional design artifact</title>
       <link>https://whois.ducciomondanelli.com/writing/mentor-coaching-micro-course.html</link>
       <guid>https://whois.ducciomondanelli.com/writing/mentor-coaching-micro-course.html</guid>
       <pubDate>Mon, 31 Aug 2026 12:00:00 GMT</pubDate>
-      <description>Two years of mentor coaching PD lived in Canvas pages where nobody outside the program could see the design. No Rise license, so I couldn&apos;t build a course &amp;mdash; I designed one. The deliverable is a one-page design doc (audience, objectives, alignment, assessment) and a build-ready spec, and the alignment table exposed what my own knowledge checks never verified.</description>
+      <description>A year of mentor coaching PD lived in Canvas pages where nobody outside the program could see the design. No Rise license, so I couldn&apos;t build a course. I designed one instead. The deliverable is a one-page design doc (audience, objectives, alignment, assessment) and a build-ready spec, and the alignment table exposed what my own knowledge checks never verified.</description>
     </item>
     <item>
       <title>Good idea, wrong home: a post-mortem of my KOReader patch</title>
