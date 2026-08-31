@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One performance, one page: designing my mentor training as a real instructional design artifact &middot; Duccio Mondanelli</title>
+  <meta name="description" content="The training lives in Canvas/ProServa and I can't author in Rise, so I designed one slice of it as a portable spec: a one-page design doc with audience, objectives, alignment, assessment — and what the alignment table exposed about my own knowledge checks.">
+  <meta name="date" content="2026-08-31">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+<style id="gl-design-system-variables">
+:root { --paper: #f6f7f5; --ink: #1b2430; --blueprint: #2b5bb8; --blueprint-dark: #1e4390; --marker: #b07a18; --grid: #d8dcd6; --muted: #5c6672; --card: #ffffff; --measure: 66ch; }
+</style>
+<style id="post-table-styles">
+article.post table {
+  width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem;
+}
+article.post th {
+  background: var(--ink); color: var(--paper); text-align: left;
+  padding: 0.6rem 0.75rem; font-family: "Archivo", sans-serif; font-weight: 700;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
+}
+article.post td {
+  border: 1px solid var(--grid); background: var(--card);
+  padding: 0.6rem 0.75rem; vertical-align: top; line-height: 1.55;
+}
+article.post .doc-field {
+  font-family: "IBM Plex Mono", monospace; font-size: 0.78rem;
+  color: var(--blueprint-dark); text-transform: uppercase; letter-spacing: 0.05em;
+  margin: 1.75rem 0 0.35rem;
+}
+article.post .doc-field + p { margin-top: 0; }
+article.post .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+article.post .table-scroll table { margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="/">Duccio Mondanelli<span>.</span></a>
+    <nav class="site" aria-label="Site">
+      <a href="/">About</a>
+      <a href="/writing/" aria-current="page">Writing</a>
+      <a href="/projects/">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <span class="label">Case study &middot; Instructional design</span>
+      <h1>One performance, one page: designing my mentor training as a real instructional design artifact</h1>
+      <p class="byline">Duccio Mondanelli &middot; 2026 &middot; ~9 min read</p>
+
+      <p>
+        I have spent two years building a professional development curriculum for
+        mentor teachers: nine asynchronous modules, a facilitator guide for four
+        synchronous sessions, seven printable coaching handouts, scenario banks,
+        knowledge checks. It teaches experienced special educators how to coach a
+        teacher candidate instead of evaluating one. It is, by any honest
+        definition, instructional design work.
+      </p>
+
+      <p>
+        And almost none of it reads as instructional design work to someone
+        outside my program. It lives in Canvas pages. It assumes a cohort, a
+        facilitator, and a program calendar. There is no design document, because
+        I was the designer, the SME, and the facilitator, and I never needed to
+        hand the thinking to anyone else. Which is exactly the problem: a
+        portfolio artifact is a handoff. It has to carry the reasoning on its own.
+      </p>
+
+      <p>
+        The test this piece has to pass isn't "can he run a mentor program?" &mdash;
+        that much was never in doubt. It's "does he think like an instructional
+        designer?" A recruiter in learning &amp; development has four minutes and
+        no context for my program, my state, or special education. The artifact
+        has to make the design visible on its own terms: a clear performance, a
+        single page of aligned decisions, an assessment that verifies a decision
+        rather than a definition. That is the lane, and this is the thing that
+        unlocks it.
+      </p>
+
+      <p>
+        Disclosure first: I didn't build this. I don't have an Articulate Rise
+        license, and the real training still lives in Canvas and ProServa &mdash;
+        that's where mentors actually take it. What I made is the part that
+        survives a handoff: a design spec for a standalone micro-course, plus a
+        one-page design doc that runs audience &rarr; objectives &rarr; alignment
+        &rarr; assessment. Anyone with Rise could execute the spec, but the
+        thinking is the deliverable. This post is about the decisions that took,
+        in order, because the doc is the fast part and the decisions are the
+        real work.
+      </p>
+
+      <h2>What I started with</h2>
+
+      <p>
+        The source material is Coach's Corner, the mentor PD series I built for a
+        special education teacher apprenticeship program. Year one orients new
+        mentors: the shift from evaluator to thinking partner, a feedback model
+        called Celebrate-Guide-Grow, three observation lenses mapped to
+        <a href="https://highleveragepractices.org/">High Leverage Practices</a>,
+        a Skill vs. Will diagnostic. Year two goes deeper into the hard version of
+        the job: observing a resident for a full year without evaluative
+        authority, which means learning to collect low-inference evidence &mdash;
+        what a video camera would record &mdash; and let the resident interpret it
+        before you do.
+      </p>
+
+      <p>
+        It works in context. But "in context" is the operative phrase. The
+        modules lean on discussion boards, a shared vocabulary built across
+        months, and a facilitator who reads the posts before every live session.
+        You cannot drop a hiring manager into module three and expect the design
+        to be visible. The design was distributed across a year. The artifact
+        needed it concentrated.
+      </p>
+
+      <h2>Scoping: pick a performance, not a module</h2>
+
+      <p>
+        My first instinct was to convert a full module. That instinct was wrong,
+        and catching it early saved the project. A module is a container shaped
+        by my program's calendar. A micro-course should be shaped by a
+        performance: one thing the learner does differently afterward, small
+        enough to teach in twenty minutes and concrete enough to assess.
+      </p>
+
+      <p>
+        The performance I chose is the post-observation debrief. It is the moment
+        the whole curriculum orbits: a mentor has just watched a candidate teach,
+        and what happens in the next ten minutes decides whether the candidate
+        thinks or defends. Running that conversation well requires three separable
+        skills that my Canvas modules teach across two years &mdash; leading with
+        evidence instead of judgment, letting the candidate interpret first, and
+        choosing a coaching move that matches what the candidate needs. Compressed
+        and re-sequenced, that is a complete, self-contained micro-course, which
+        I specced as <em>Coaching the Debrief</em>. It also generalizes. Nothing
+        in it depends on my program, my state, or special education specifically.
+        Any mentorship-based preparation program has this exact conversation.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>Scope the artifact to a performance, not to your existing content structure. The container you built for a cohort is almost never the right container for a standalone course.</p>
+      </div>
+
+      <h2>The one-page design doc</h2>
+
+      <p>
+        Here is the document, lightly compressed for the web. It is one page on
+        purpose. The discipline of one page is the point: every row you cannot
+        fill is a decision you have not actually made yet.
+      </p>
+
+      <p class="doc-field">Course</p>
+      <p>
+        Coaching the Debrief: giving feedback that makes new teachers think. A
+        ~20-minute micro-course specified for Rise with one Storyline branching
+        interaction. This is a design spec, not a build &mdash; no Rise license.
+        The real training still ships through Canvas/ProServa.
+      </p>
+
+      <p class="doc-field">Audience</p>
+      <p>
+        Experienced K&ndash;12 teachers serving as mentors or cooperating
+        teachers for a student teacher, resident, or apprentice. Experts in
+        teaching; novices in coaching. Their default mode &mdash; trained by
+        every rubric and evaluation they have ever received &mdash; is to watch
+        a lesson and deliver a verdict. Time-poor: the course must be
+        completable in one sitting, on any device, with no facilitator.
+      </p>
+
+      <p class="doc-field">The gap</p>
+      <p>
+        Mentors give feedback that is either vague praise ("great rapport!") or
+        an unsupported conclusion ("your pacing was too fast"). Both end the
+        candidate's thinking. Candidates comply or defend; they do not reflect.
+        The debrief produces agreement or friction, not growth.
+      </p>
+
+      <p class="doc-field">Terminal objective</p>
+      <p>
+        Given an observed lesson, the mentor will conduct a debrief in which
+        they (a)&nbsp;present low-inference evidence before any interpretation,
+        (b)&nbsp;prompt the candidate to interpret that evidence first, and
+        (c)&nbsp;respond with a coaching move &mdash; Celebrate, Guide, or Grow
+        &mdash; matched to what the candidate's reflection reveals.
+      </p>
+
+      <p class="doc-field">Alignment</p>
+
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Enabling objective</th>
+            <th>Content</th>
+            <th>Practice</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Distinguish low-inference evidence from interpretation, and rewrite an interpretation as evidence.</td>
+            <td>Side-by-side examples ("You don't call on students equitably" vs. "You called on 8 students in 12 minutes; six sat in the front two rows"), plus the disagreement test: if two observers could have written different things, it's interpretation.</td>
+            <td>Rise sorting block: classify eight statements as evidence or interpretation.</td>
+            <td>Given three evaluative statements, select the strongest low-inference rewrite of each; feedback explains what the wrong options smuggle in.</td>
+          </tr>
+          <tr>
+            <td>2. Sequence a debrief so the candidate interprets the evidence before the mentor does.</td>
+            <td>The five-move debrief: candidate reflects &rarr; mentor shares one piece of evidence &rarr; candidate interprets &rarr; mentor offers their view, marked as one view &rarr; land on a concrete next step.</td>
+            <td>Rise ordering interaction: rebuild a scrambled debrief transcript into the correct sequence.</td>
+            <td>Spot-the-break: a debrief transcript with one sequencing error (mentor concludes before the candidate speaks); learner identifies the move that broke it.</td>
+          </tr>
+          <tr>
+            <td>3. Given the candidate's reflection, choose the matching coaching move and compose a response consistent with it.</td>
+            <td>The three buckets &mdash; Celebrate (build confidence with specific evidence), Guide (question toward the why), Grow (commit to a concrete next step) &mdash; and how to read which one the moment calls for.</td>
+            <td>Three short scenarios; learner picks a bucket and sees a model response in that bucket.</td>
+            <td>Storyline branching conversation: a full debrief with a candidate whose reactions change based on the mentor's choices. Wrong moves aren't "incorrect" &mdash; they show the candidate going quiet or defensive, and the scene lets you recover.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p class="doc-field">Assessment philosophy</p>
+      <p>
+        No scores. Every assessment is scenario-based and feedback shows
+        consequence, not correctness: choose the verdict-first opener and you
+        watch the candidate stop talking. Completion equals reaching a
+        reflective outcome in the branching debrief. A downloadable one-page
+        job aid (the five-move sequence plus bucket cues) is the takeaway
+        artifact, because the real assessment happens in their next debrief,
+        where I can't see it.
+      </p>
+
+      <figure class="schematic">
+        <svg viewBox="0 0 750 172" role="img" aria-labelledby="flowTitle flowDesc" xmlns="http://www.w3.org/2000/svg">
+          <title id="flowTitle">The five-move debrief</title>
+          <desc id="flowDesc">A five-move debrief: the candidate reflects, the mentor shares one piece of evidence, the candidate interprets it, the mentor offers their view as one view, and the two land on a concrete next step.</desc>
+          <style>
+            .fig2-title { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: #1b2430; text-anchor: middle; }
+            .fig2-sub { font-family: "IBM Plex Mono", monospace; font-size: 10px; fill: #5c6672; text-anchor: middle; }
+          </style>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2b5bb8"/>
+            </marker>
+          </defs>
+
+          <text x="14" y="18" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#5c6672">FIG. 02 / THE FIVE-MOVE DEBRIEF</text>
+
+          <!-- Move 1 -->
+          <rect x="16" y="44" width="124" height="60" rx="5" fill="#ffffff" stroke="#1b2430" stroke-width="1.5"/>
+          <text x="78" y="70" class="fig2-title">CANDIDATE</text>
+          <text x="78" y="88" class="fig2-sub">reflects first</text>
+
+          <!-- Move 2 -->
+          <rect x="162" y="44" width="124" height="60" rx="5" fill="#ffffff" stroke="#1b2430" stroke-width="1.5"/>
+          <text x="224" y="70" class="fig2-title">EVIDENCE</text>
+          <text x="224" y="88" class="fig2-sub">one thing you saw</text>
+
+          <!-- Move 3 -->
+          <rect x="308" y="44" width="124" height="60" rx="5" fill="#ffffff" stroke="#1b2430" stroke-width="1.5"/>
+          <text x="370" y="70" class="fig2-title">CANDIDATE</text>
+          <text x="370" y="88" class="fig2-sub">interprets it first</text>
+
+          <!-- Move 4 (pivot) -->
+          <rect x="454" y="44" width="124" height="60" rx="5" fill="#eef3fc" stroke="#2b5bb8" stroke-width="1.5"/>
+          <text x="516" y="70" class="fig2-title" fill="#1e4390">MENTOR</text>
+          <text x="516" y="88" class="fig2-sub" fill="#1e4390">one view, not verdict</text>
+
+          <!-- Move 5 -->
+          <rect x="600" y="44" width="124" height="60" rx="5" fill="#ffffff" stroke="#1b2430" stroke-width="1.5"/>
+          <text x="662" y="70" class="fig2-title">NOW WHAT</text>
+          <text x="662" y="88" class="fig2-sub">commit, this week</text>
+
+          <!-- Arrows -->
+          <line x1="140" y1="74" x2="156" y2="74" stroke="#2b5bb8" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="286" y1="74" x2="302" y2="74" stroke="#2b5bb8" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="432" y1="74" x2="448" y2="74" stroke="#2b5bb8" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="578" y1="74" x2="594" y2="74" stroke="#2b5bb8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Pivot callout -->
+          <line x1="516" y1="104" x2="516" y2="112" stroke="#b07a18" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <rect x="430" y="112" width="172" height="40" rx="5" fill="none" stroke="#b07a18" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="516" y="128" font-family="IBM Plex Mono, monospace" font-size="9" text-anchor="middle" fill="#b07a18">THE PIVOT</text>
+          <text x="516" y="141" font-family="IBM Plex Mono, monospace" font-size="8" text-anchor="middle" fill="#b07a18">one view, not a verdict</text>
+        </svg>
+        <figcaption>The sequence is the spine of the spec. Moves 1&ndash;3 keep the candidate thinking; move 4 is the pivot &mdash; offering your read as <em>one</em> view rather than the verdict. In the build, this is the single Storyline interaction.</figcaption>
+      </figure>
+
+      <h2>What the alignment table exposed</h2>
+
+      <p>
+        I expected writing the doc to be a formatting exercise. It was an audit.
+        The moment content, practice, and assessment sit in adjacent columns,
+        you can see what your course actually verifies &mdash; and my original
+        Canvas knowledge checks did not survive the look. They tested recall:
+        "The Celebrate bucket is primarily designed to&hellip;" A mentor can
+        answer that perfectly and still open their next debrief with "so, that
+        transition was rough." Recall was never the gap. The gap was performance
+        under the pull of old habits.
+      </p>
+
+      <p>
+        So every assessment became a decision inside a scenario. This is also
+        where the Storyline block earned its place: a branching conversation is
+        the closest a self-paced course gets to the actual performance
+        environment, because the thing that makes debriefs hard is not knowing
+        the model &mdash; it's holding onto it while a real person reacts to
+        you.
+      </p>
+
+      <div class="callout">
+        <p class="callout-label">The principle</p>
+        <p>If the assessment column just restates the content column with a question mark, you've built a reading with a quiz. Assess the decision, not the definition.</p>
+      </div>
+
+      <h2>Tooling decisions: Rise for the spine, Storyline for one moment</h2>
+
+      <p>
+        I can't author in either tool &mdash; no license, no build. So read this
+        the way a spec gets read: it's the tooling decision I'd hand whoever
+        builds it, and for design purposes the decision itself is the point,
+        because it's a judgment about where the expensive interaction earns its
+        cost.
+      </p>
+
+      <p>
+        The split is pragmatic. Rise handles the spine: reading blocks, sorting,
+        ordering, scenario cards. It is fast to build, responsive by default, and
+        honest about what it is. Storyline appears exactly once, for the branching
+        debrief, because that interaction genuinely needs state &mdash; the
+        candidate's disposition has to persist across choices for the
+        consequences to feel real.
+      </p>
+
+      <p>
+        I considered specifying the whole thing in Storyline for portfolio
+        signaling. I decided against it, and I'd defend the decision in an
+        interview, which is rather the point: reaching for the heavier tool
+        everywhere is its own design smell. The spec should show judgment about
+        when the expensive interaction is worth its cost, not just that I can
+        describe one.
+      </p>
+
+      <h2>What the design trades away</h2>
+
+      <p>
+        Honesty section. "Conversion" is the wrong verb, since I never built it.
+        The real frame is what this design gives up next to the thing that's
+        actually running in Canvas and ProServa. That original leans on what a
+        standalone micro-course cannot have: discussion boards where mentors read
+        each other's real observation notes, a facilitator who names patterns
+        across the cohort, and the fact that every participant has a live
+        candidate to practice on that same week. A micro-course trades all of
+        that for reach and self-sufficiency. The branching scenario and the job
+        aid are replacements, not equivalents &mdash; social accountability
+        became simulated consequence. Because I specced rather than built, this
+        is also the cost review I'd otherwise only have done after a build. The
+        design doc says so in one line, because a doc that hides its trade-offs
+        is marketing.
+      </p>
+
+      <h2>What I'd tell someone building their first ID artifact</h2>
+      <ul>
+        <li>Start from work you actually did. A portfolio piece invented for the portfolio has no constraints in it, and constraints are where design is visible.</li>
+        <li>Scope to one performance, twenty minutes. The restraint is the demonstration.</li>
+        <li>Write the design doc before you open the authoring tool. Mine took an evening and changed the assessments completely; the build is just execution.</li>
+        <li>Make the alignment table load-bearing. Every objective gets content, practice, and assessment in the same row, or it gets cut.</li>
+        <li>Let feedback show consequences. "Incorrect, try again" teaches test-taking. A candidate who goes quiet teaches coaching.</li>
+        <li>Name what the format costs you. Reviewers trust a designer who states trade-offs more than one who claims none.</li>
+      </ul>
+
+      <p>
+        If you're sitting on real training work that doesn't yet read as
+        instructional design &mdash; or you're on the hiring side and think I've
+        got this wrong &mdash; I'm happy to compare notes. Find me on
+        <a class="inline" href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a>.
+      </p>
+
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>&copy; 2026 Duccio Mondanelli. Views are my own, not my employer's.</p>
+    <p><a href="https://www.linkedin.com/in/ducciomondanelli/">LinkedIn</a> &nbsp;/&nbsp; <a href="https://github.com/dukkokun">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
