@@ -2,5 +2,12 @@
 # Regenerate feed.xml when a writing post is staged, so it never drifts
 # out of sync with writing/index.html.
 if git diff --cached --name-only | grep -q '^writing/'; then
-  node scripts/build-feed.js && git add feed.xml
+  if command -v node >/dev/null 2>&1; then
+    node scripts/build-feed.js && git add feed.xml
+  elif command -v bun >/dev/null 2>&1; then
+    bun scripts/build-feed.js && git add feed.xml
+  else
+    echo "pre-commit: neither node nor bun found, cannot regenerate feed.xml" >&2
+    exit 1
+  fi
 fi
